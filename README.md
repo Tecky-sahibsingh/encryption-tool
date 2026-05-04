@@ -31,11 +31,6 @@ This project implements both classical and modern cryptographic techniques.
 
 ---
 
-##  Demo
-https://youtu.be/EH3H2EkWCLg
-
----
-
 ##  Project Objective
 To provide a simple and user-friendly tool for encrypting and decrypting text using both basic and advanced cryptographic methods.
 
