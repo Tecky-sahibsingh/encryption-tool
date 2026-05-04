@@ -26,9 +26,9 @@ def encrypt_caesar(plaintext, shift):
 def decrypt_caesar(ciphertext, shift):
     return encrypt_caesar(ciphertext, -shift)
 
-# AES Functions with key normalization
+# AES Functions
 def normalize_key(key):
-    return hashlib.sha256(key.encode('utf-8')).digest()  # 32 bytes (AES-256)
+    return hashlib.sha256(key.encode('utf-8')).digest()
 
 def encrypt_aes(plaintext, key):
     key = normalize_key(key)
@@ -46,7 +46,7 @@ def decrypt_aes(ciphertext, key):
     plaintext = cipher.decrypt(ciphertext).decode('utf-8')
     return plaintext
 
-# Encrypt Button Function
+# Encrypt Function
 def encrypt():
     plaintext = text_input.get("1.0", tk.END).strip()
     shift = int(shift_input.get() or 0)
@@ -62,7 +62,7 @@ def encrypt():
     result_output.delete("1.0", tk.END)
     result_output.insert(tk.END, result)
 
-# Decrypt Button Function
+# Decrypt Function
 def decrypt():
     ciphertext = text_input.get("1.0", tk.END).strip()
     shift = int(shift_input.get() or 0)
@@ -82,32 +82,51 @@ def decrypt():
     result_output.delete("1.0", tk.END)
     result_output.insert(tk.END, result)
 
-# GUI Setup
-app = tk.Tk()
-app.title("Simple Encryption and Decryption Tool")
+# NEW: Clear Function
+def clear_fields():
+    text_input.delete("1.0", tk.END)
+    result_output.delete("1.0", tk.END)
+    shift_input.delete(0, tk.END)
+    key_input.delete(0, tk.END)
 
-tk.Label(app, text="Text:").pack()
-text_input = tk.Text(app, height=5, width=50)
+# NEW: Copy Function
+def copy_result():
+    result = result_output.get("1.0", tk.END).strip()
+    app.clipboard_clear()
+    app.clipboard_append(result)
+    messagebox.showinfo("Copied", "Result copied to clipboard!")
+
+# GUI
+app = tk.Tk()
+app.title("Encryption and Decryption Tool")
+app.configure(bg="#1e1e2f")  # dark background
+
+# Labels
+tk.Label(app, text="Text:", bg="#1e1e2f", fg="white").pack()
+text_input = tk.Text(app, height=5, width=50, bg="#2b2b3c", fg="white")
 text_input.pack()
 
-tk.Label(app, text="Shift (for Caesar Cipher):").pack()
-shift_input = tk.Entry(app)
+tk.Label(app, text="Shift (Caesar):", bg="#1e1e2f", fg="white").pack()
+shift_input = tk.Entry(app, bg="#2b2b3c", fg="white")
 shift_input.pack()
 
-tk.Label(app, text="Key (for AES):").pack()
-key_input = tk.Entry(app)
+tk.Label(app, text="Key (AES):", bg="#1e1e2f", fg="white").pack()
+key_input = tk.Entry(app, bg="#2b2b3c", fg="white")
 key_input.pack()
 
-tk.Label(app, text="Algorithm:").pack()
+tk.Label(app, text="Algorithm:", bg="#1e1e2f", fg="white").pack()
 algorithm = tk.StringVar(app)
 algorithm.set("Caesar Cipher")
 tk.OptionMenu(app, algorithm, "Caesar Cipher", "AES").pack()
 
-tk.Button(app, text="Encrypt", command=encrypt).pack()
-tk.Button(app, text="Decrypt", command=decrypt).pack()
+# Buttons
+tk.Button(app, text="Encrypt", bg="#4CAF50", fg="white", command=encrypt).pack()
+tk.Button(app, text="Decrypt", bg="#2196F3", fg="white", command=decrypt).pack()
+tk.Button(app, text="Clear", bg="#f44336", fg="white", command=clear_fields).pack()
+tk.Button(app, text="Copy Result", bg="#9C27B0", fg="white", command=copy_result).pack()
 
-tk.Label(app, text="Result:").pack()
-result_output = tk.Text(app, height=5, width=50)
+tk.Label(app, text="Result:", bg="#1e1e2f", fg="white").pack()
+result_output = tk.Text(app, height=5, width=50, bg="#2b2b3c", fg="white")
 result_output.pack()
 
 app.mainloop()
