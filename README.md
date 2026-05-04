@@ -45,3 +45,13 @@ To provide a simple and user-friendly tool for encrypting and decrypting text us
 - Caesar Cipher (Classical Cryptography)
 - AES Encryption (Modern Cryptography)
 - SHA-256 Hashing
+
+- ## 📸 Screenshots
+
+### Caesar Cipher
+![Caesar 1](SCREENSHOT1.png)
+![Caesar 2](SCREENSHOT2.png)
+
+### AES Encryption
+![AES 1](SCREENSHOT3.png)
+![AES 2](SCREENSHOT4.png)
