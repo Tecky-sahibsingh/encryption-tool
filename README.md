@@ -50,3 +50,6 @@ To provide a simple and user-friendly tool for encrypting and decrypting text us
 ### AES Encryption
 ![AES 1](SCREENSHOT3.png)
 ![AES 2](SCREENSHOT4.png)
+
+## 🎥 Demo
+https://youtu.be/mwPCMTKn1eY
